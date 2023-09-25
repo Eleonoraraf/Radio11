@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class Radiotest {
+public class RadioTest {
     @Test
     public void switchingVolumeToOnePlus(){//Переключение громкости на одну единицу выше
         Radio Radio = new Radio();
