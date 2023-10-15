@@ -1,24 +1,16 @@
 public class Radio {
-    public Radio(int minRadioStation, int maxRadioStation) {
-        this.minRadioStation = minRadioStation;
-        this.maxRadioStation = maxRadioStation;
-        this. currentRadioStation= minRadioStation;
-    }
 
-    public Radio(int size) {
-        maxRadioStation = minRadioStation + size;
-    }
-
+    private boolean on;
     private int id;
+    // private int currentVolume;
+    // private int currentRadioStation;
     private String name = "noname";
     private int maxRadioStation = 10;//Макс радиостанция.
     private int maxVolume = 100;//Макс громкость.
     private int minRadioStation = 0;//Мин радиостанция.
-    private int minVolume = 0;//Макс громкость.
+    private int minVolume = 0;//Мин громкость.
     private int currentRadioStation = minRadioStation;//Текущая радиостанция.
     private int currentVolume = minVolume;//Текущая громкость.
-    // private int currentVolume;
-    // private int currentRadioStation;
 
     public int getMaxRadioStations() {//Макс радиостанция.
         return maxRadioStation;
@@ -43,8 +35,6 @@ public class Radio {
     public int getCurrentRadioStation() {//Запрос данных.
         return currentRadioStation;
     }
-
-    private boolean on;
 
     public void getSwitchingVolumePlus() {//Переключение громкости на одну единицу выше.
         int target = currentVolume + 1;
@@ -94,4 +84,13 @@ public class Radio {
         currentVolume = maxVolume;
     }
 
+    public Radio(int minRadioStation, int maxRadioStation) {
+        this.minRadioStation = minRadioStation;
+        this.maxRadioStation = maxRadioStation;
+        this. currentRadioStation= minRadioStation;
+    }
+
+    public Radio(int size) {
+        maxRadioStation = minRadioStation + size;
+    }
 }
