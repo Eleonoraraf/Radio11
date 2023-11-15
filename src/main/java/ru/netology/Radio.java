@@ -4,12 +4,19 @@ public class Radio {
     private int currentStation;
     private int currentVolume;
 
+
     public int getCurrentStation() {
         return currentStation;
     }
 
     public int getCurrentVolume() {
         return currentVolume;
+    }
+    public Radio(int currentStation) {
+        this.currentStation=currentStation;
+    }
+    public Radio() {
+        this.currentVolume=currentVolume;
     }
 
     public void setCurrentStation(int currentStation) {
@@ -59,4 +66,6 @@ public class Radio {
             currentVolume = currentVolume - 1;
         }
     }
+
+
 }

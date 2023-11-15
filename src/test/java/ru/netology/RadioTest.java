@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
 
-//    @Test
+    //    @Test
 //    public void shouldReturnCurrentStation() {
 //        Radio radio = new Radio();
 //        int expected = 0;
@@ -22,12 +23,18 @@ class RadioTest {
 //        int actual = radio.getCurrentVolume();
 //        assertEquals(expected, actual);
 //    }
+    @Test
+    public void test() {
+        Radio radio = new Radio(9);
+
+        Assertions.assertEquals(9, radio.getCurrentStation());
+    }
 
     @Test
     public void stationShouldNotBeOver9() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
-        int expected = 0;
+        Radio radio = new Radio(10);
+        //radio.setCurrentStation(10);
+        int expected = 10;
         int actual = radio.getCurrentStation();
         assertEquals(expected, actual);
     }
@@ -61,8 +68,8 @@ class RadioTest {
 
     @Test
     public void shouldGoToNextStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(5);
+        Radio radio = new Radio(5);
+        //radio.setCurrentStation(5);
         radio.goToNextStation();
         int expected = 6;
         int actual = radio.getCurrentStation();
@@ -71,8 +78,8 @@ class RadioTest {
 
     @Test
     public void shouldGoForwardTo0After9() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(9);
+        //radio.setCurrentStation(9);
         radio.goToNextStation();
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -81,8 +88,8 @@ class RadioTest {
 
     @Test
     public void shouldGoToPrevStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(5);
+        Radio radio = new Radio(5);
+        //radio.setCurrentStation(5);
         radio.goToPrevStation();
         int expected = 4;
         int actual = radio.getCurrentStation();
@@ -91,8 +98,8 @@ class RadioTest {
 
     @Test
     public void shouldGoBackTo9After0() {
-        Radio radio = new Radio();
-        radio.goToPrevStation();
+        Radio radio = new Radio(9);
+        //radio.goToPrevStation();
         int expected = 9;
         int actual = radio.getCurrentStation();
         assertEquals(expected, actual);
