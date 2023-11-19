@@ -4,28 +4,28 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RadioTest{
+class RadioTest {
 
     @Test
-    void shouldCreateRadioWithDefaultStations(){
+    void shouldCreateRadioWithDefaultStations() {
         Radio radio = new Radio();
         assertEquals(10, radio.getNumberOfRadioStations());
     }
 
     @Test
-    void shouldCreateRadioWithSpecificOfStations(){
+    void shouldCreateRadioWithSpecificOfStations() {
         Radio radio = new Radio(15);
         assertEquals(15, radio.getNumberOfRadioStations());
     }
 
     @Test
-    void shouldNotAllowZeroStation(){
+    void shouldNotAllowZeroStation() {
         Radio radio = new Radio(0);
         assertEquals(1, radio.getNumberOfRadioStations());
     }
 
     @Test
-    void shouldWrapAroundToFirstStationFromLast(){
+    void shouldWrapAroundToFirstStationFromLast() {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(9);
         radio.nextRadioStation();
@@ -34,7 +34,7 @@ class RadioTest{
     }
 
     @Test
-    void shouldWrapAroundToLastStationFromFirst(){
+    void shouldWrapAroundToLastStationFromFirst() {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(0);
         radio.previousRadioStation();
@@ -43,7 +43,7 @@ class RadioTest{
     }
 
     @Test
-    void shouldNotSetStationBeyondRange(){
+    void shouldNotSetStationBeyondRange() {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(15);
 
@@ -51,7 +51,7 @@ class RadioTest{
     }
 
     @Test
-    void shouldNotIncreaseVolumeBeyondMax(){
+    void shouldNotIncreaseVolumeBeyondMax() {
         Radio radio = new Radio();
         radio.setCurrentVolume(100);
         radio.increaseVolume();
@@ -60,7 +60,7 @@ class RadioTest{
     }
 
     @Test
-    void shouldIncreaseVolumeWithinRange(){
+    void shouldIncreaseVolumeWithinRange() {
         Radio radio = new Radio();
         radio.setCurrentVolume(50);
         radio.increaseVolume();
@@ -69,7 +69,7 @@ class RadioTest{
     }
 
     @Test
-    void shouldNotDecreaseVolumeBeyondMin(){
+    void shouldNotDecreaseVolumeBeyondMin() {
         Radio radio = new Radio();
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
@@ -79,7 +79,7 @@ class RadioTest{
 
 
     @Test
-    void shouldDecreaseVolumeWithinRange(){
+    void shouldDecreaseVolumeWithinRange() {
         Radio radio = new Radio();
         radio.setCurrentVolume(50);
         radio.decreaseVolume();
