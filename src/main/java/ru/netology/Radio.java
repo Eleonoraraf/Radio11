@@ -1,71 +1,65 @@
 package ru.netology;
 
 public class Radio {
-    private int currentStation;
+
+    private static final int MAX_VOLUME = 100;
+    private static final int MIN_VOLUME = 0;
+    private static final int MIN_RADIO_STATION = 0;
     private int currentVolume;
+    private int currentRadioStation;
 
+    private final int numberOfRadioStations;
 
-    public int getCurrentStation() {
-        return currentStation;
+    public Radio() {
+        this.numberOfRadioStations = 10;
     }
 
+    public Radio(int numberOfRadioStations) {
+        this.numberOfRadioStations = Math.max(numberOfRadioStations, 1);
+    }
+
+    // Getters
     public int getCurrentVolume() {
         return currentVolume;
     }
-    public Radio(int currentStation) {
-        this.currentStation=currentStation;
-    }
-    public Radio() {
-        this.currentVolume=currentVolume;
+
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void setCurrentStation(int currentStation) {
-        if (currentStation > 9) {
-            return;
-        }
-        if (currentStation < 0) {
-            return;
-        }
-        this.currentStation = currentStation;
+    public int getNumberOfRadioStations() {
+        return numberOfRadioStations;
     }
 
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > 10) {
-            return;
-        }
-        if (currentVolume < 0) {
-            return;
-        }
-        this.currentVolume = currentVolume;
+    // Setters
+
+    public void setCurrentVolume(int newVolume) {
+        int current = Math.max(newVolume, MIN_VOLUME); // проверка, что число не меньше MIN_VOLUME
+        currentVolume = Math.min(current, MAX_VOLUME); // проверка, что число не больше MAX_VOLUME
     }
 
-    public void goToNextStation() {
-        if (currentStation < 9) {
-            currentStation = currentStation + 1;
-        } else {
-            currentStation = 0;
+    public void setCurrentRadioStation(int newStation) {
+        if (newStation >= MIN_RADIO_STATION && newStation < numberOfRadioStations) { // сохраняем станции только если они от 0 до numberOfRadioStations (не включительно)
+            currentRadioStation = newStation;
         }
     }
 
-    public void goToPrevStation() {
-        if (currentStation > 0) {
-            currentStation = currentStation - 1;
-        } else {
-            currentStation = 9;
-        }
-    }
-
+    // Methods
     public void increaseVolume() {
-        if (currentVolume < 10) {
-            currentVolume = currentVolume + 1;
-        }
+        setCurrentVolume(currentVolume + 1);
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
-        }
+        setCurrentVolume(currentVolume - 1);
     }
 
+    public void nextRadioStation() {
+        // остаток от деления. Если достигли максимального значения, то остаток 0
+        setCurrentRadioStation((currentRadioStation + 1) % numberOfRadioStations);
+    }
+
+    public void previousRadioStation() {
+        setCurrentRadioStation((currentRadioStation - 1 + numberOfRadioStations) % numberOfRadioStations);
+    }
 
 }
