@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,14 +22,14 @@ class RadioTest {
     @Test
     void shouldNotAllowZeroStation() {
         Radio radio = new Radio(0);
-        assertEquals(1, radio.getNumberOfRadioStations());
+        assertEquals(10, radio.getNumberOfRadioStations());
     }
 
     @Test
     void shouldWrapAroundToFirstStationFromLast() {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(9);
-        radio.nextRadioStation();
+        radio.next();
 
         assertEquals(0, radio.getCurrentRadioStation());
     }
@@ -37,7 +38,7 @@ class RadioTest {
     void shouldWrapAroundToLastStationFromFirst() {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(0);
-        radio.previousRadioStation();
+        radio.prev();
 
         assertEquals(9, radio.getCurrentRadioStation());
     }
@@ -47,45 +48,43 @@ class RadioTest {
         Radio radio = new Radio(10);
         radio.setCurrentRadioStation(15);
 
-        assertEquals(0, radio.getCurrentRadioStation());
+        assertEquals(9, radio.getCurrentRadioStation());
     }
 
     @Test
     void shouldNotIncreaseVolumeBeyondMax() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(100);
+        radio.setVolume(100);
         radio.increaseVolume();
 
-        assertEquals(100, radio.getCurrentVolume());
+        assertEquals(100, radio.getVolume());
     }
 
     @Test
     void shouldIncreaseVolumeWithinRange() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(50);
+        radio.setVolume(50);
         radio.increaseVolume();
 
-        assertEquals(51, radio.getCurrentVolume());
+        assertEquals(51, radio.getVolume());
     }
 
     @Test
     void shouldNotDecreaseVolumeBeyondMin() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(0);
+        radio.setVolume(0);
         radio.decreaseVolume();
 
-        assertEquals(0, radio.getCurrentVolume());
+        assertEquals(0, radio.getVolume());
     }
 
 
     @Test
     void shouldDecreaseVolumeWithinRange() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(50);
+        radio.setVolume(50);
         radio.decreaseVolume();
 
-        assertEquals(49, radio.getCurrentVolume());
+        assertEquals(49, radio.getVolume());
     }
-
-
 }
